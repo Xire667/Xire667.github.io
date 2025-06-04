@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Suiza - Sistema de Reportes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <img src="/img/LOGO DSI-2022.png" alt="Logo Instituto Suiza">
+            </div>
+            <ul class="navbar__menu">
+                <li><a href="/inicio/index (1).html">Inicio</a></li>
+                <li><a href="#">Reporte de Notas</a></li>
+                <li><a href="#carreras">Asistencias</a></li>
+                <li class="reporte"><a href="#">Reporte Alumno</a></li>
+                <li><a href="#">Trámites</a></li>
+                <li><a href="#">ChatConsultas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="descripcion-reporte">
+            <h1>Reporte de Alumnos</h1>
+            <p>En esta sección podrás revisar e imprimir los reportes de los alumnos.</p>
+        </section>
+
+        <section class="reporte-container">
+            <div class="filtros-container">
+                <div class="filtro-grupo">
+                    <label for="buscar-estudiante">Filtrar por Estudiante:</label>
+                    <input class="buscador" type="text" id="buscar-estudiante" placeholder="Ingrese nombre del estudiante">
+                </div>
+                <div class="filtro-grupo">
+                    <label for="select-ciclo">Ciclos:</label>
+                    <select class="ciclos" name="ciclo" id="select-ciclo">
+                        <option value="1">I</option>
+                        <option value="2">II</option>
+                        <option value="3">III</option>
+                        <option value="4">IV</option>
+                        <option value="5">V</option>
+                        <option value="6">VI</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tabla-container">
+                <table class="tabla-estudiantes">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Ciclo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mapeo"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <p>&copy; 2025 Instituto Suiza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+    const estudiante = [
+        {
+            dni: 89789747,
+            name: "Juan",
+            lastname: "Pérez",
+            cicle: "I"
+        },
+        {
+            dni: 45678912,
+            name: "María",
+            lastname: "González",
+            cicle: "II"
+        },
+        {
+            dni: 78912345,
+            name: "Carlos",
+            lastname: "Rodríguez",
+            cicle: "III"
+        },
+        {
+            dni: 32165498,
+            name: "Ana",
+            lastname: "López",
+            cicle: "I"
+        },
+        {
+            dni: 65498732,
+            name: "Pedro",
+            lastname: "Martínez",
+            cicle: "II"
+        },
+    ];
+
+    const tabla = document.getElementById("mapeo");
+
+    estudiante.forEach(e => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td>${e.dni}</td>
+            <td>${e.name}</td>
+            <td>${e.lastname}</td>
+            <td>${e.cicle}</td>
+            <td>
+                <button class="btn-ver">Ver</button>
+                <button class="btn-editar">Editar</button>
+            </td>
+        `;
+        tabla.appendChild(fila);
+    });
+    </script>
+</body>
+</html>
