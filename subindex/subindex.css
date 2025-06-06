@@ -125,13 +125,13 @@ body {
     border-radius: 10px;
 }
 .tabla-estudiantes th:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
 }
 
 .tabla-estudiantes th:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
 }
 .tabla-estudiantes th,
 .tabla-estudiantes td {
@@ -177,7 +177,21 @@ body {
     opacity: 0.9;
     transform: translateY(-1px);
 }
-
+.volver{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    margin-right: 0.5rem;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+.volver:hover{
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
 /* Footer */
 .footer {
     background-color: var(--color-primary);
