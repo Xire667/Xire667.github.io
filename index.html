@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instituto Suiza - Sistema de Reportes</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="navbar__logo">
-                <img src="/img/LOGO DSI-2022.png" alt="Logo Instituto Suiza">
+                <img src="./img/LOGO DSI-2022.png" alt="Logo Instituto Suiza">
             </div>
             <ul class="navbar__menu">
-                <li><a href="/inicio/index (1).html">Inicio</a></li>
-                <li><a href="#">Reporte de Notas</a></li>
-                <li><a href="#carreras">Asistencias</a></li>
-                <li class="reporte"><a href="#">Reporte Alumno</a></li>
-                <li><a href="#">Trámites</a></li>
-                <li><a href="#">ChatConsultas</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#"><i class="fas fa-clipboard-list"></i> Reporte de Notas</a></li>
+                <li><a href="#carreras"><i class="fas fa-user-check"></i> Asistencias</a></li>
+                <li class="reporte"><a href="#"><i class="fas fa-user-graduate"></i> Reporte Alumno</a></li>
+                <li><a href="#"><i class="fas fa-file-alt"></i> Trámites</a></li>
+                <li><a href="#"><i class="fas fa-comments"></i> ChatConsultas</a></li>
             </ul>
         </nav>
     </header>
@@ -26,24 +28,32 @@
     <main class="main-content">
         <section class="descripcion-reporte">
             <h1>Reporte de Alumnos</h1>
-            <p>En esta sección podrás revisar e imprimir los reportes de los alumnos.</p>
+            <p>Sistema de gestión y seguimiento académico para estudiantes del Instituto Suiza.</p>
         </section>
 
         <section class="reporte-container">
             <div class="filtros-container">
                 <div class="filtro-grupo">
-                    <label for="buscar-estudiante">Filtrar por Estudiante:</label>
-                    <input class="buscador" type="text" id="buscar-estudiante" placeholder="Ingrese nombre del estudiante">
+                    <label for="buscar-estudiante">
+                        <i class="fas fa-search"></i>
+                        Buscar Estudiante:
+                    </label>
+                    <input class="buscador" type="text" id="buscar-estudiante" 
+                            placeholder="Ingrese nombre o DNI del estudiante">
                 </div>
                 <div class="filtro-grupo">
-                    <label for="select-ciclo">Ciclos:</label>
+                    <label for="select-ciclo">
+                        <i class="fas fa-graduation-cap"></i>
+                        Ciclo:
+                    </label>
                     <select class="ciclos" name="ciclo" id="select-ciclo">
-                        <option value="1">I</option>
-                        <option value="2">II</option>
-                        <option value="3">III</option>
-                        <option value="4">IV</option>
-                        <option value="5">V</option>
-                        <option value="6">VI</option>
+                        <option value="">Todos los ciclos</option>
+                        <option value="1">I Ciclo</option>
+                        <option value="2">II Ciclo</option>
+                        <option value="3">III Ciclo</option>
+                        <option value="4">IV Ciclo</option>
+                        <option value="5">V Ciclo</option>
+                        <option value="6">VI Ciclo</option>
                     </select>
                 </div>
             </div>
@@ -52,11 +62,11 @@
                 <table class="tabla-estudiantes">
                     <thead>
                         <tr>
-                            <th>DNI</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Ciclo</th>
-                            <th>Acciones</th>
+                            <th><i class="fas fa-id-card"></i> DNI</th>
+                            <th><i class="fas fa-user"></i> Nombre</th>
+                            <th><i class="fas fa-user"></i> Apellido</th>
+                            <th><i class="fas fa-graduation-cap"></i> Ciclo</th>
+                            <th><i class="fas fa-cogs"></i> Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="mapeo"></tbody>
@@ -67,7 +77,13 @@
 
     <footer class="footer">
         <div class="footer__content">
-            <p>&copy; 2025 Instituto Suiza. Todos los derechos reservados.</p>
+            <p><i class="far fa-copyright"></i> 2025 Instituto Suiza. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
         </div>
     </footer>
 
@@ -106,21 +122,58 @@
     ];
 
     const tabla = document.getElementById("mapeo");
+    const buscador = document.getElementById("buscar-estudiante");
+    const selectCiclo = document.getElementById("select-ciclo");
 
-    estudiante.forEach(e => {
-        const fila = document.createElement("tr");
-        fila.innerHTML = `
-            <td>${e.dni}</td>
-            <td>${e.name}</td>
-            <td>${e.lastname}</td>
-            <td>${e.cicle}</td>
-            <td>
-                <button class="btn-ver">Ver</button>
-                <button class="btn-editar">Editar</button>
-            </td>
-        `;
-        tabla.appendChild(fila);
-    });
+    function renderizarTabla(estudiantes) {
+        tabla.innerHTML = '';
+        estudiantes.forEach(e => {
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
+                <td>${e.dni}</td>
+                <td>${e.name}</td>
+                <td>${e.lastname}</td>
+                <td>${e.cicle}</td>
+                <td>
+                    <button class="btn-accion" title="Ver detalles">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn-accion" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-accion" title="Descargar reporte">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </td>
+            `;
+            tabla.appendChild(fila);
+        });
+    }
+
+    function filtrarEstudiantes() {
+        const terminoBusqueda = buscador.value.toLowerCase();
+        const cicloSeleccionado = selectCiclo.value;
+        
+        const estudiantesFiltrados = estudiante.filter(e => {
+            const coincideBusqueda = 
+                e.name.toLowerCase().includes(terminoBusqueda) ||
+                e.lastname.toLowerCase().includes(terminoBusqueda) ||
+                e.dni.toString().includes(terminoBusqueda);
+            
+            const coincideCiclo = 
+                cicloSeleccionado === "" || e.cicle === cicloSeleccionado;
+            
+            return coincideBusqueda && coincideCiclo;
+        });
+        
+        renderizarTabla(estudiantesFiltrados);
+    }
+
+    buscador.addEventListener('input', filtrarEstudiantes);
+    selectCiclo.addEventListener('change', filtrarEstudiantes);
+
+    // Renderizar tabla inicial
+    renderizarTabla(estudiante);
     </script>
 </body>
 </html>
