@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto Suiza - Sistema de Reportes</title>
+    <link rel="stylesheet" href="subindex.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <img src="../img/LOGO DSI-2022.png" alt="Logo Instituto Suiza">
+            </div>
+            <ul class="navbar__menu">
+                <li><a href="/inicio/index (1).html">Inicio</a></li>
+                <li><a href="#">Reporte de Notas</a></li>
+                <li><a href="#carreras">Asistencias</a></li>
+                <li class="reporte"><a href="#">Reporte Alumno</a></li>
+                <li><a href="#">Trámites</a></li>
+                <li><a href="#">ChatConsultas</a></li>
+            </ul>
+        </nav>
+    </header>
+    </body>
+    <main class="main-content">
+        <section class="descripcion-reporte">
+            <h1>Estudiante Juan Pérez</h1>
+            <p>Estado de sus pagos</p>
+        </section>
+
+        <section class="reporte-container">
+            <div class="filtros-container">
+                <div class="filtro-grupo">
+                    <label for="select-ciclo">Filtrar Deudas por Categoria:</label>
+                    <select class="ciclos" name="ciclo" id="select-ciclo">
+                        <option value="1">Matriculas</option>
+                        <option value="2">Otros</option>
+                        <option value="3">Otros1</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tabla-container">
+                <table class="tabla-estudiantes">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha de Pago</th>
+                            <th>Monto pagado</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mapeo"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <p>&copy; 2025 Instituto Suiza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+    const estudiante = [
+        {
+            dni: 89789747,
+            name: "Juan",
+            lastname: "Pérez",
+            fecha: "12/12/12",
+            monto: 100,
+            estado: "adelanto"
+        },
+        {
+            dni: 89789747,
+            name: "Juan",
+            lastname: "Pérez",
+            fecha: "12/12/12",
+            monto: 200,
+            estado: "cancelado"
+        },
+        {
+            dni: 89789747,
+            name: "Juan",
+            lastname: "Pérez",
+            fecha: "12/12/12",
+            monto: 100,
+            estado: "adelanto"
+        },
+        {
+            dni: 89789747,
+            name: "Juan",
+            lastname: "Pérez",
+            fecha: "12/12/12",
+            monto: 200,
+            estado: "cancelado"
+        },
+        {
+            dni: 89789747,
+            name: "Juan",
+            lastname: "Pérez",
+            fecha: "12/12/12",
+            monto: 100,
+            estado: "adelanto"
+        },
+    ];
+
+    const tabla = document.getElementById("mapeo");
+
+    estudiante.forEach(e => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td>${e.dni}</td>
+            <td>${e.name}</td>
+            <td>${e.lastname}</td>
+            <td>${e.fecha}</td>
+            <td>${e.monto}</td>
+            <td>${e.estado}</td>
+
+        `;
+        tabla.appendChild(fila);
+    });
+    </script>
+</body>
+</html>
