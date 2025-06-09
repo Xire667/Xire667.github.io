@@ -63,9 +63,9 @@
                     <thead>
                         <tr>
                             <th><i class="fas fa-id-card"></i> DNI</th>
-                            <th><i class="fas fa-user"></i> Nombre</th>
-                            <th><i class="fas fa-user"></i> Apellido</th>
+                            <th><i class="fas fa-user"></i> Nombre Completo</th>
                             <th><i class="fas fa-graduation-cap"></i> Ciclo</th>
+                            <th><i class="fas fa-phone"></i> Telefono</th>
                             <th><i class="fas fa-cogs"></i> Acciones</th>
                         </tr>
                     </thead>
@@ -90,40 +90,52 @@
     <script>
     const estudiante = [
         {
-            dni: 89789747,
-            name: "Juan",
-            lastname: "Pérez",
-            cicle: "I"
+            dni: 75614641,
+            name: "Erix Angel Eduardo Hübner Salas",
+            cicle: "V",
+            phone: "961266281"
         },
         {
             dni: 45678912,
-            name: "María",
-            lastname: "González",
-            cicle: "II"
+            name: "Antonich",
+            cicle: "IV",
+            phone: "93458937"
         },
         {
             dni: 78912345,
-            name: "Carlos",
-            lastname: "Rodríguez",
-            cicle: "III"
+            name: "Angelo",
+            cicle: "III",
+            phone: "98475873"
         },
         {
             dni: 32165498,
-            name: "Ana",
-            lastname: "López",
-            cicle: "I"
+            name: "Miquias",
+            cicle: "I",
+            phone: "93438945"
         },
         {
             dni: 65498732,
-            name: "Pedro",
-            lastname: "Martínez",
-            cicle: "II"
+            name: "Yaicate",
+            cicle: "II",
+            phone: "93453459"
         },
     ];
 
     const tabla = document.getElementById("mapeo");
     const buscador = document.getElementById("buscar-estudiante");
     const selectCiclo = document.getElementById("select-ciclo");
+
+    function numeroAromano(num){
+        const conversiones = {
+            '1': 'I',
+            '2': 'II',
+            '3': 'III',
+            '4': 'IV',
+            '5': 'V',
+            '6': 'VI',
+        }
+        return conversiones[num] || num;
+    }
 
     function renderizarTabla(estudiantes) {
         tabla.innerHTML = '';
@@ -132,8 +144,8 @@
             fila.innerHTML = `
                 <td>${e.dni}</td>
                 <td>${e.name}</td>
-                <td>${e.lastname}</td>
                 <td>${e.cicle}</td>
+                <td>${e.phone}</td>
                 <td>
                     <button class="btn-accion" title="Ver detalles">
                         <i class="fas fa-eye"></i>
@@ -157,11 +169,11 @@
         const estudiantesFiltrados = estudiante.filter(e => {
             const coincideBusqueda = 
                 e.name.toLowerCase().includes(terminoBusqueda) ||
-                e.lastname.toLowerCase().includes(terminoBusqueda) ||
                 e.dni.toString().includes(terminoBusqueda);
             
+            const cicloRomano = numeroAromano(cicloSeleccionado);
             const coincideCiclo = 
-                cicloSeleccionado === "" || e.cicle === cicloSeleccionado;
+                cicloSeleccionado === "" || e.cicle === cicloRomano;
             
             return coincideBusqueda && coincideCiclo;
         });
