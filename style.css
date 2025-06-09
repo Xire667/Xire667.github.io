@@ -25,7 +25,7 @@ body {
 
 /* Header y Navegación */
 .navbar {
-    background-color: var(--color-white);
+    background-color: var(--color-primary);
     padding: .5rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -53,7 +53,7 @@ body {
 }
 
 .navbar__menu a {
-    color: var(--color-text);
+    color: var(--color-white);
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
@@ -83,7 +83,7 @@ body {
     padding: 2rem;
     border-radius: var(--border-radius);
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
@@ -109,12 +109,12 @@ body {
 /* Filtros */
 .filtros-container {
     background-color: var(--color-white);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: var(--border-radius);
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     box-shadow: var(--shadow);
 }
 
